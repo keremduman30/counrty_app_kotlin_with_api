@@ -1,0 +1,135 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.android.extensions'
+    id 'org.jetbrains.kotlin.kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.example.countrykotlin"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding{
+        enabled = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+def lifeCycleExtensionVersion = '1.1.1'
+def retrofitVersion = '2.3.0'
+def glideVersion = '4.9.0'
+def rxJavaVersion = '2.1.1'
+def roomVersion = '2.2.3'
+def navVersion = '2.2.1'
+def preferencesVersion = '1.1.0'
+def lifecycle_version = "2.4.0-alpha02"
+dependencies {
+
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0-rc01")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.0-rc01")
+
+
+    implementation "androidx.room:room-runtime:2.4.2"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    kapt "androidx.room:room-compiler:2.4.2"
+    implementation "androidx.room:room-ktx:2.4.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1"
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.4.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.4.2")
+
+    implementation "com.google.android.material:material:1.6.0"
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
+
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+
+
+
+    implementation "androidx.preference:preference:1.2.0"
+
+
+}
+
+/*
+
+    implementation "android.arch.lifecycle:extensions:$lifeCycleExtensionVersion"
+
+    //room sqlite veritabanı için
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+
+    //async yapıda calısması için thread
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1"
+
+    //sayfa gecisleri ve veri aktarımları için
+    implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
+
+    //dizayn için
+    implementation "com.google.android.material:material:1.6.0"
+
+    //api almak için
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    //buda api almak için ama bu call kullanmadan ynani retroditin tamamlayıcısı diyebilirz
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
+
+    //internetten gorselleri indirmek için kullandıgımız bir kutuphane
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+
+    //buda renk onerileri acmak için kulanıılr
+    implementation "com.android.support:palette-v7:$supportVersion"
+    implementation "com.android.support:design:$supportVersion"
+
+    //kullanıcıların tercihlerini hatırlaması için kullanılır
+    implementation "androidx.preference:preference:$preferencesVersion"
+
+*/

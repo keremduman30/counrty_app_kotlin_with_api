@@ -16,18 +16,10 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
 
-//not: ekstradan view model eger siz sayfayı yan ceviriseniz digerlinde normalde yeniden view yuklenir
-//ama viewmodel bunu kaybetmeden yenidencizmeden bize gostermeyi saglar ve bu guzel bir ozellik buna lifecyles denilir
-//bide live data var oda observer ile goruntuleme observable ilede veriyi guncelleme buda yasayan veri live data oluyor
-//baseviewmodeldan mplement edilmenin sebebi couritin scope kullanmaktır
+
 class FeedViewModel(application: Application):BaseViewModel(application) {
     private val countryApiService=CountryApiService()// api servisimiz
-    /*
-    internetten bir sey indirirken her yaptgımız call un aslında hafızada bir yer tutuyor ve bu fragmentler
-    kapandıgında yada temizlendiginde bu call'lardan kurtulmak lazım composibleDispose da bu işe yarıyor
-    buyuk bir obje olusturuyor ve call yaptıkca buraya atıyor kullan at objesi demek zaten
-
-     */
+  
     private val disposable=CompositeDisposable()
 
     private var customSharedPreferences=CustomSharedPreferences(getApplication())
@@ -104,7 +96,6 @@ class FeedViewModel(application: Application):BaseViewModel(application) {
         launch {
             val dao=CountryDatabase(getApplication()).countryDao()
             dao.deleteAllCountries();
-            //primarykey olarak donyor bunu simdi inte cevirelim
            val listLong= dao.insertAll(*list.toTypedArray())//bu listeyi tek tek ekle kotline ozgu listeyi tekil hale geitiyiyor. individual: tek tek hale
             var i=0;
             while (i<list.size){
@@ -113,7 +104,6 @@ class FeedViewModel(application: Application):BaseViewModel(application) {
             }
             showCountries(list);
         }
-        //simdi eger bu database yazıldıgı anki dakkayi almak istiyorsak System.nanoTime() kullanııılırız
         customSharedPreferences.saveTime(System.nanoTime())
     }
 
